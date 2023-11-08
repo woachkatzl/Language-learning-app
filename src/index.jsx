@@ -3,7 +3,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 //Компоненты
-import { App } from "./App";
+import { App } from "./presentation/App";
 
 //Стили
 import "./assets/styles/global.scss";
