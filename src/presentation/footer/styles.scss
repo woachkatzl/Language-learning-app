@@ -1,0 +1,36 @@
+@use "../../assets/styles/mixins.scss" as *;
+@use "../../assets/styles/variables.scss" as v;
+
+.footer {
+  @include vertical-center;
+  padding-bottom: 2rem;
+}
+
+.footerImg {
+  max-width: 100%;
+}
+
+.footerTxt {
+  @include footer-txt;
+}
+
+.footerTxt_red {
+  color: v.$red;
+}
+
+.footerTxt_blue {
+  color: v.$blue;
+}
+
+.footerIcon {
+  width: 3.5rem;
+  margin-right: 0.75rem;
+}
+
+.footerTxt_img {
+  display: flex;
+  align-items: center;
+  &:hover {
+    text-decoration: underline;
+  }
+}
