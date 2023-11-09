@@ -1,0 +1,32 @@
+.tableContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  display: table;
+  min-width: 80%;
+  border: 1px solid #000000;
+  border-collapse: collapse;
+}
+
+.thead {
+  display: table-header-group;
+}
+
+.tbody {
+  display: table-row-group;
+}
+
+.tfoot {
+  display: table-footer-group;
+}
+
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+  border: 1px solid #000000;
+}
