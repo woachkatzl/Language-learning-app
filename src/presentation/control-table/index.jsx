@@ -1,5 +1,9 @@
 import React from "react";
 
+//components
+import { words } from "../../domain/info/wordsList";
+import { TableRow } from "../control-table-row";
+
 //styles
 import styles from "./table.module.scss";
 
@@ -17,7 +21,18 @@ function ControlTable() {
             <div className={styles.td}></div>
           </div>
         </div>
-        <div className={styles.tbody}></div>
+        <div className={styles.tbody}>
+          {words.map((word) => (
+            <TableRow
+              key={word.id}
+              id={word.id}
+              word={word.english}
+              transcription={word.transcription}
+              translation={word.russian}
+              topic={word.topic}
+            />
+          ))}
+        </div>
         <div className={styles.tfoot}></div>
       </div>
     </div>
