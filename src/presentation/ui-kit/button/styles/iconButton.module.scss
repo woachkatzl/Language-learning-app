@@ -1,0 +1,15 @@
+@use "../../../../assets/styles/variables.scss" as v;
+
+.button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 0.5rem 0.25rem;
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.icon {
+  width: 1.75rem;
+}
