@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 //components
 import { Button } from "../ui-kit/button";
+import { TableInput } from "../ui-kit/input-field";
 
 //styles
 import classNames from "classnames";
@@ -41,24 +42,16 @@ function TableRow(props) {
         <form className={styles.tr}>
           <div className={styles.td}>{id}</div>
           <div className={narrowCol}>
-            <input className={styles.formInput} type="text" value={word} />
+            <TableInput value={word} />
           </div>
           <div className={narrowCol}>
-            <input
-              className={styles.formInput}
-              type="text"
-              value={transcription}
-            />
+            <TableInput value={transcription} />
           </div>
           <div className={wideCol}>
-            <input
-              className={styles.formInput}
-              type="text"
-              value={translation}
-            />
+            <TableInput value={translation} />
           </div>
           <div className={narrowCol}>
-            <input className={styles.formInput} type="text" value={topic} />
+            <TableInput value={topic} />
           </div>
           <div className={buttonCell}>
             <Button

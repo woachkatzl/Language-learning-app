@@ -1,0 +1,13 @@
+@use "../../../assets/styles/variables.scss" as v;
+
+.formInput {
+  height: 2rem;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid v.$fade-blue;
+
+  &:focus {
+    outline: none;
+    border-color: v.$green;
+  }
+}
