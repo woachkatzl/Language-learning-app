@@ -19,10 +19,10 @@ import saveIcon from "../ui-kit/button/icons/save.svg";
 import cancelIcon from "../ui-kit/button/icons/cancel.svg";
 
 function TableRow(props) {
-  const { id, word, transcription, translation, topic } = props;
+  const { id, word, transcription, translation, topic, editMode } = props;
 
   //Состояния
-  const [inEdit, setEditMode] = useState(false);
+  const [inEdit, setEditMode] = useState(editMode || false);
 
   //Составные классы
   const buttonCell = classNames(styles.td, styles.buttonCell);
