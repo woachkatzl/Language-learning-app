@@ -1,0 +1,9 @@
+@use "../../../../assets/styles/variables.scss" as v;
+
+.button {
+  padding: 1rem 1rem;
+  font-family: v.$decoration;
+  font-weight: 500;
+  font-size: 2rem;
+  color: v.$white;
+}
