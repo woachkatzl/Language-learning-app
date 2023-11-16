@@ -2,4 +2,8 @@
 
 .button {
   background-color: v.$blue;
+
+  &:active {
+    background-color: v.$dark-blue;
+  }
 }

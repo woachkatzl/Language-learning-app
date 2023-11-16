@@ -3,7 +3,6 @@ import React from "react";
 //components
 import { words } from "../../domain/info/wordsList";
 import { TableRow } from "../control-table-row";
-import { FormRow } from "../control-table-formRow";
 
 //styles
 import styles from "./table.module.scss";
