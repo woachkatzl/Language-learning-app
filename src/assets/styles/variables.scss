@@ -1,10 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
 
 //fonts
 $decoration: "Montserrat", sans-serif;
+$regText: "Calibri", sans-serif;
 
 //colors
 $blue: rgb(68, 125, 194);
 $red: rgb(224, 1, 0);
 $green: rgb(6, 165, 39);
 $yellow: rgb(237, 153, 21);
+
+$fade-blue: rgb(188, 196, 206);
+
+$hlt-yellow: rgb(247, 244, 211);
+
+$dark-red: rgb(161, 1, 1);
+$dark-green: rgb(5, 119, 27);
+$dark-yellow: rgb(185, 121, 17);

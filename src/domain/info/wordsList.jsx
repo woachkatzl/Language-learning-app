@@ -30,7 +30,7 @@ export const words = [
   {
     id: "5",
     english: "starch",
-    transcription: "[[stɑːtʃ]",
+    transcription: "[stɑːtʃ]",
     russian: "крахмал",
     topic: "еда (food)",
   },

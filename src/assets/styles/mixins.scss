@@ -1,5 +1,17 @@
 @use "./variables.scss" as v;
 
+@mixin table-header-txt {
+  font-family: v.$decoration;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+@mixin table-text {
+  font-family: v.$regText;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
 @mixin footer-txt {
   font-family: v.$decoration;
   font-weight: 400;

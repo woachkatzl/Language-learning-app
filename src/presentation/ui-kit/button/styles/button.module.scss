@@ -5,4 +5,8 @@
   font-family: v.$decoration;
   border: none;
   border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

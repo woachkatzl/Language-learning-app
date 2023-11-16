@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "../ui-kit/button";
 
 //styles
+import classNames from "classnames";
 import styles from "./formRow.module.scss";
 import greenBtn from "../ui-kit/button/styles/greenBtn.module.scss";
 import yellowBtn from "../ui-kit/button/styles/yellowBtn.module.scss";
@@ -12,7 +13,7 @@ import yellowBtn from "../ui-kit/button/styles/yellowBtn.module.scss";
 import saveIcon from "../ui-kit/button/icons/save.svg";
 import cancelIcon from "../ui-kit/button/icons/cancel.svg";
 
-function formRow(props) {
+function FormRow(props) {
   const { id, word, transcription, translation, topic } = props;
 
   //Составные классы
@@ -20,20 +21,18 @@ function formRow(props) {
 
   return (
     <form className={styles.tr}>
+      <div className={styles.td}>{id}</div>
       <div className={styles.td}>
-        <input type="text" placeholder={id} />
+        <input className={styles.formInput} type="text" value={word} />
       </div>
       <div className={styles.td}>
-        <input type="text" placeholder={word} />
+        <input className={styles.formInput} type="text" value={transcription} />
       </div>
       <div className={styles.td}>
-        <input type="text" placeholder={transcription} />
+        <input className={styles.formInput} type="text" value={translation} />
       </div>
       <div className={styles.td}>
-        <input type="text" placeholder={translation} />
-      </div>
-      <div className={styles.td}>
-        <input type="text" placeholder={topic} />
+        <input className={styles.formInput} type="text" value={topic} />
       </div>
       <div className={buttonCell}>
         <Button
@@ -53,4 +52,4 @@ function formRow(props) {
   );
 }
 
-export { formRow };
+export { FormRow };

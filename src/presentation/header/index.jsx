@@ -8,7 +8,7 @@ import headerImg from "./assets/header.jpg";
 
 function Header() {
   return (
-    <div>
+    <div className="header">
       <img src={headerImg} alt="Header image" className="headerImg" />
     </div>
   );
