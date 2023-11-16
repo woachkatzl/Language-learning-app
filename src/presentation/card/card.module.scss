@@ -1,6 +1,40 @@
+@use "../../assets/styles/variables.scss" as v;
+@use "../../assets/styles/mixins.scss" as *;
+
 .card {
-  width: 100px;
-  height: 200px;
-  border: 1px solid #000000;
+  display: grid;
+  grid-template-rows: 40% 20% 20% [hint-start] 20%;
+  justify-items: center;
+  width: 400px;
+  height: 450px;
+  padding: 1rem;
+  font-family: v.$regText;
+  font-size: 1rem;
+  border: 1px solid v.$yellow;
   border-radius: 5px;
+  background-color: v.$hlt-yellow;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.word {
+  align-self: end;
+  font-family: v.$decoration;
+  font-size: 2rem;
+}
+
+.translation {
+  font-family: v.$decoration;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: v.$green;
+}
+
+.hint {
+  grid-row-start: hint-start;
+  justify-self: end;
+  align-self: end;
+  font-size: 0.8rem;
 }
