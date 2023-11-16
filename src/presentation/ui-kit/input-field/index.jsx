@@ -4,9 +4,20 @@ import React from "react";
 import styles from "./tableInput.module.scss";
 
 function TableInput(props) {
-  const { value, ...otherProps } = props;
+  const { value, type, ...otherProps } = props;
 
-  return <input className={styles.formInput} type="text" value={value} />;
+  return (
+    <input
+      className={styles.formInput}
+      type={type}
+      value={value}
+      {...otherProps}
+    />
+  );
 }
+
+TableInput.defaultProps = {
+  type: "text",
+};
 
 export { TableInput };
