@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import styles from "./card.module.scss";
 
 function Card(props) {
-  const { word, transcription, translation } = props;
+  const { word, transcription, translation, isFlipped } = props;
 
   //Cостояния
-  const [flipped, setFlipped] = useState(false);
+  const [flipped, setFlipped] = useState(isFlipped || false);
 
   const handleClick = () => {
     setFlipped(!flipped);
@@ -22,11 +22,5 @@ function Card(props) {
     </div>
   );
 }
-
-Card.defaultProps = {
-  word: "to sample",
-  transcription: "[tə ˈsæmpəl]",
-  translation: "попробовать",
-};
 
 export { Card };

@@ -5,6 +5,9 @@ import { ControlTable } from "../control-table";
 import { Button } from "../ui-kit/button";
 import { CardSlider } from "../card-slider";
 
+//Информация
+import { words } from "../../domain/info/wordsList";
+
 //Стили
 import styles from "./mainContent.module.scss";
 import blueButton from "../ui-kit/button/styles/blueBtn.module.scss";
@@ -26,7 +29,7 @@ function MainContent(props) {
     <>
       {flashCards ? (
         <div className={styles.container}>
-          <CardSlider />
+          <CardSlider words={words} />
           <Button
             type="button"
             text="Вернуться к таблице"
