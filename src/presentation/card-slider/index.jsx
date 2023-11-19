@@ -68,4 +68,14 @@ function CardSlider(props) {
   );
 }
 
+CardSlider.defaultProps = {
+  words: [
+    {
+      english: "Пример слова",
+      transcription: "[транскрипция]",
+      russian: "перевод",
+    },
+  ],
+};
+
 export { CardSlider };
