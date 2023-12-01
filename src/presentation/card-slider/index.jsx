@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //Компоненты
 import { Card } from "../card";
@@ -17,6 +17,11 @@ function CardSlider(props) {
 
   //Состояния
   const [wordIndex, setWordIndex] = useState(initWord || 0);
+
+  const [isFlipped, setIsFlipped] = useState(false);
+  useEffect(() => {
+    setIsFlipped(false); //сбрасывает переворот карточки при смене индекса
+  }, [wordIndex]);
 
   //Методы
   const handleRightClick = (e) => {
@@ -56,6 +61,8 @@ function CardSlider(props) {
         word={words[wordIndex].english}
         transcription={words[wordIndex].transcription}
         translation={words[wordIndex].russian}
+        isFlipped={isFlipped}
+        setIsFlipped={setIsFlipped}
       />
       <Button
         type="button"
