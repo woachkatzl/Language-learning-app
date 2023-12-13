@@ -1,7 +1,48 @@
+@use "../../assets/styles/variables.scss" as v;
+@use "../../assets/styles/mixins.scss" as *;
+
 .header {
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
+}
+
+.headerBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: v.$white;
+}
+
+.headerLogo {
+  width: 130px;
+  margin-left: 25px;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.headerLink {
+  margin-right: 30px;
+  @include table-header-txt;
+  color: v.$blue;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: v.$red;
+  }
 }
 
 .headerImg {
   max-width: 100%;
+  margin-top: 130px;
 }

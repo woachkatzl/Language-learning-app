@@ -23,3 +23,11 @@
   flex-direction: column;
   align-items: center;
 }
+
+//UTILITIES
+
+//CLEAR MARGINS AND PADDINGS
+@mixin clear-mp {
+  margin: 0;
+  padding: 0;
+}
