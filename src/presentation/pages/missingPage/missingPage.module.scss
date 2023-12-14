@@ -1,0 +1,36 @@
+@use "../../../assets/styles/variables.scss" as v;
+@use "../../../assets/styles/mixins.scss" as *;
+
+.container {
+  @include vertical-center;
+}
+
+.title {
+  font-family: v.$decoration;
+  font-size: 10rem;
+  @include clear-mp;
+  color: v.$red;
+}
+
+.subTitle {
+  font-family: v.$decoration;
+  font-size: 1.8rem;
+  @include clear-mp;
+  color: v.$red;
+}
+
+.text {
+  @include reg-text;
+}
+
+.link {
+  color: v.$blue;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: v.$red;
+  }
+}
