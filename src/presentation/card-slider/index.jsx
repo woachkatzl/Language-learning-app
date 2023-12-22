@@ -13,15 +13,24 @@ import rightArrow from "../ui-kit/button/icons/right-arrow.svg";
 import leftArrow from "../ui-kit/button/icons/left-arrow.svg";
 
 function CardSlider(props) {
-  const { words, initWord } = props;
+  const { words, initWord, initWordCount, learnedWords } = props;
 
   //Состояния
+  //Изменение индекса карточки
   const [wordIndex, setWordIndex] = useState(initWord || 0);
 
+  //Переворачивание карточки
   const [isFlipped, setIsFlipped] = useState(false);
   useEffect(() => {
     setIsFlipped(false); //сбрасывает переворот карточки при смене индекса
   }, [wordIndex]);
+
+  //Количество выученных слов
+  const [wordsCount, setWordsCount] = useState(initWordCount || 0);
+  useEffect(() => console.log("Выученных слов: " + wordsCount), [wordsCount]);
+
+  //Список айди выученных слов
+  const [wordsLearned, setWordsLearned] = useState(learnedWords || []);
 
   //Методы
   const handleRightClick = (e) => {
@@ -48,6 +57,16 @@ function CardSlider(props) {
     });
   };
 
+  const handleCardClick = (wordId) => {
+    setIsFlipped(!isFlipped);
+
+    //Если после переворота карточка на стороне с переводом и её айди ещё нет в списке выученных слов, кол-во выученных слов увеличится и айди этого слова добавится в список
+    if (!isFlipped && !wordsLearned.find((word) => word == wordId)) {
+      setWordsCount((prevCount) => prevCount + 1);
+      setWordsLearned((prevWords) => [...prevWords, wordId]);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Button
@@ -61,8 +80,9 @@ function CardSlider(props) {
         word={words[wordIndex].english}
         transcription={words[wordIndex].transcription}
         translation={words[wordIndex].russian}
+        id={words[wordIndex].id}
         isFlipped={isFlipped}
-        setIsFlipped={setIsFlipped}
+        handleClick={() => handleCardClick(words[wordIndex].id)}
       />
       <Button
         type="button"
