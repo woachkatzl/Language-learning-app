@@ -77,6 +77,7 @@ function CardSlider(props) {
         onClick={handleLeftClick}
       />
       <Card
+        key={words[wordIndex].id}
         word={words[wordIndex].english}
         transcription={words[wordIndex].transcription}
         translation={words[wordIndex].russian}
