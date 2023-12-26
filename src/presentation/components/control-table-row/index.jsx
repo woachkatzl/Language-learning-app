@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 
 //components
-import { Button } from "../ui-kit/button";
-import { TableInput } from "../ui-kit/input-field";
+import { Button } from "../../ui-kit/button";
+import { TableInput } from "../../ui-kit/input-field";
 
 //styles
 import classNames from "classnames";
 import styles from "./tableRow.module.scss";
-import redBtn from "../ui-kit/button/styles/redBtn.module.scss";
-import yellowBtn from "../ui-kit/button/styles/yellowBtn.module.scss";
-import greenBtn from "../ui-kit/button/styles/greenBtn.module.scss";
-import blueBtn from "../ui-kit/button/styles/blueBtn.module.scss";
+import redBtn from "../../ui-kit/button/styles/redBtn.module.scss";
+import yellowBtn from "../../ui-kit/button/styles/yellowBtn.module.scss";
+import greenBtn from "../../ui-kit/button/styles/greenBtn.module.scss";
+import blueBtn from "../../ui-kit/button/styles/blueBtn.module.scss";
 
 //images
-import editIcon from "../ui-kit/button/icons/edit.svg";
-import deleteIcon from "../ui-kit/button/icons/delete.svg";
-import saveIcon from "../ui-kit/button/icons/save.svg";
-import cancelIcon from "../ui-kit/button/icons/cancel.svg";
+import editIcon from "../../ui-kit/button/icons/edit.svg";
+import deleteIcon from "../../ui-kit/button/icons/delete.svg";
+import saveIcon from "../../ui-kit/button/icons/save.svg";
+import cancelIcon from "../../ui-kit/button/icons/cancel.svg";
 
 function TableRow(props) {
   const { id, word, transcription, translation, topic, editMode } = props;

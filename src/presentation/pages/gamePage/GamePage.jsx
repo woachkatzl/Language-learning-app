@@ -1,7 +1,7 @@
 import React from "react";
 
 //Компоненты
-import { CardSlider } from "../../card-slider";
+import { CardSlider } from "../../components/card-slider";
 
 //Информация
 import { words } from "../../../domain/info/wordsList";

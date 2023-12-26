@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 
 //Компоненты
 import { Card } from "../card";
-import { Button } from "../ui-kit/button";
+import { Button } from "../../ui-kit/button";
 
 //Стили
 import styles from "./cardSlider.module.scss";
-import yellowBtn from "../ui-kit/button/styles/yellowBtn.module.scss";
+import yellowBtn from "../../ui-kit/button/styles/yellowBtn.module.scss";
 
 //Изображения
-import rightArrow from "../ui-kit/button/icons/right-arrow.svg";
-import leftArrow from "../ui-kit/button/icons/left-arrow.svg";
+import rightArrow from "../../ui-kit/button/icons/right-arrow.svg";
+import leftArrow from "../../ui-kit/button/icons/left-arrow.svg";
 
 function CardSlider(props) {
   const { words, initWord, initWordCount, learnedWords } = props;

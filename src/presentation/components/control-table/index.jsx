@@ -1,7 +1,7 @@
 import React from "react";
 
 //components
-import { words } from "../../domain/info/wordsList";
+import { words } from "../../../domain/info/wordsList";
 import { TableRow } from "../control-table-row";
 
 //styles

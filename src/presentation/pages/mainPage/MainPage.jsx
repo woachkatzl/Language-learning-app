@@ -1,7 +1,7 @@
 import React from "react";
 
 //Компоненты
-import { ControlTable } from "../../control-table";
+import { ControlTable } from "../../components/control-table";
 
 //Стили
 import styles from "./mainPage.module.scss";
