@@ -24,6 +24,12 @@ function TableRow(props) {
   //Состояния
   const [inEdit, setEditMode] = useState(editMode || false);
 
+  //Состояния для каждого поля ввода в режиме редактирования
+  const [editWord, setEditWord] = useState(word);
+  const [editTranscr, setEditTranscr] = useState(transcription);
+  const [editTransl, setEditTransl] = useState(translation);
+  const [editTopic, setEditTopic] = useState(topic);
+
   //Составные классы
   const buttonCell = classNames(styles.td, styles.buttonCell);
   const narrowCol = classNames(styles.td, styles.narrow);
@@ -36,22 +42,48 @@ function TableRow(props) {
     setEditMode(!inEdit);
   };
 
+  //Методы для редактирования полей ввода
+  const wordInEdit = (e) => {
+    e.preventDefault();
+    setEditWord(e.target.value);
+  };
+  const transcrInEdit = (e) => {
+    e.preventDefault();
+    setEditTranscr(e.target.value);
+  };
+  const translInEdit = (e) => {
+    e.preventDefault();
+    setEditTransl(e.target.value);
+  };
+  const topicInEdit = (e) => {
+    e.preventDefault();
+    setEditTopic(e.target.value);
+  };
+
   return (
     <>
       {inEdit ? (
         <form className={styles.tr}>
           <div className={styles.td}>{id}</div>
           <div className={narrowCol}>
-            <TableInput value={word} />
+            <TableInput value={editWord} type="text" onChange={wordInEdit} />
           </div>
           <div className={narrowCol}>
-            <TableInput value={transcription} />
+            <TableInput
+              value={editTranscr}
+              type="text"
+              onChange={transcrInEdit}
+            />
           </div>
           <div className={wideCol}>
-            <TableInput value={translation} />
+            <TableInput
+              value={editTransl}
+              type="text"
+              onChange={translInEdit}
+            />
           </div>
           <div className={narrowCol}>
-            <TableInput value={topic} />
+            <TableInput value={editTopic} type="text" onChange={topicInEdit} />
           </div>
           <div className={buttonCell}>
             <Button
