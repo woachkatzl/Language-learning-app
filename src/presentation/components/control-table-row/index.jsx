@@ -65,6 +65,7 @@ function TableRow(props) {
   //Метод для редактирования полей ввода.
   const handleChange = (e) => {
     e.preventDefault();
+
     const value = e.target.value;
     setEditField({
       ...editField,
@@ -83,6 +84,7 @@ function TableRow(props) {
               type="text"
               name="word"
               onChange={handleChange}
+              isEmpty={editField.word === ""} //Если поле ввода пустое, к нему применятся специальные стили
             />
           </div>
           <div className={narrowCol}>
@@ -91,6 +93,7 @@ function TableRow(props) {
               type="text"
               name="transcription"
               onChange={handleChange}
+              isEmpty={editField.transcription === ""}
             />
           </div>
           <div className={wideCol}>
@@ -99,6 +102,7 @@ function TableRow(props) {
               type="text"
               name="translation"
               onChange={handleChange}
+              isEmpty={editField.translation === ""}
             />
           </div>
           <div className={narrowCol}>
@@ -107,6 +111,7 @@ function TableRow(props) {
               type="text"
               name="topic"
               onChange={handleChange}
+              isEmpty={editField.topic === ""}
             />
           </div>
           <div className={buttonCell}>

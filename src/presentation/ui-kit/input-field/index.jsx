@@ -2,18 +2,15 @@ import React from "react";
 
 //Стили
 import styles from "./tableInput.module.scss";
+import classNames from "classnames";
 
 function TableInput(props) {
-  const { value, type, ...otherProps } = props;
+  const { value, type, isEmpty, ...otherProps } = props;
 
-  return (
-    <input
-      className={styles.formInput}
-      type={type}
-      value={value}
-      {...otherProps}
-    />
-  );
+  const input = classNames(styles.formInput, {
+    [styles.emptyInput]: isEmpty,
+  });
+  return <input className={input} type={type} value={value} {...otherProps} />;
 }
 
 TableInput.defaultProps = {

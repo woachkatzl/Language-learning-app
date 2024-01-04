@@ -11,3 +11,11 @@
     border-color: v.$green;
   }
 }
+
+.emptyInput {
+  border: 1px solid v.$red;
+
+  &:focus {
+    border-color: v.$red;
+  }
+}
