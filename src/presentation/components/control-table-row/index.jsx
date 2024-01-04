@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //components
 import { Button } from "../../ui-kit/button";
@@ -21,43 +21,55 @@ import cancelIcon from "../../ui-kit/button/icons/cancel.svg";
 function TableRow(props) {
   const { id, word, transcription, translation, topic, editMode } = props;
 
-  //Состояния
+  //СОСТОЯНИЯ
+  //Режим редактирования поля таблицы
   const [inEdit, setEditMode] = useState(editMode || false);
 
-  //Состояния для каждого поля ввода в режиме редактирования
-  const [editWord, setEditWord] = useState(word);
-  const [editTranscr, setEditTranscr] = useState(transcription);
-  const [editTransl, setEditTransl] = useState(translation);
-  const [editTopic, setEditTopic] = useState(topic);
+  //Состояние кнопки - активное/неактивное
+  const [btnStatus, setBtnStatus] = useState(false);
 
-  //Составные классы
+  //Состояние для строк таблицы с полями ввода в режиме редактирования
+  const [editField, setEditField] = useState({
+    word: word,
+    transcription: transcription,
+    translation: translation,
+    topic: topic,
+  });
+
+  //ЦИКЛЫ КОМПОНЕНТА
+  //При изменении в любом из полей ввода формы, будет проверка на пустое поле. Если пустое, статус кнопки переходит в неактивный
+  useEffect(() => {
+    if (
+      editField.word === "" ||
+      editField.transcription === "" ||
+      editField.translation === "" ||
+      editField.topic === ""
+    )
+      setBtnStatus(true);
+    else setBtnStatus(false);
+  }, [editField]);
+
+  //СОСТАВНЫЕ КЛАССЫ
   const buttonCell = classNames(styles.td, styles.buttonCell);
   const narrowCol = classNames(styles.td, styles.narrow);
   const wideCol = classNames(styles.td, styles.wide);
 
-  //Методы
+  //МЕТОДЫ
+  //Метод для переключения в режим редактирования
   const editClick = (e) => {
     e.preventDefault();
 
     setEditMode(!inEdit);
   };
 
-  //Методы для редактирования полей ввода
-  const wordInEdit = (e) => {
+  //Метод для редактирования полей ввода.
+  const handleChange = (e) => {
     e.preventDefault();
-    setEditWord(e.target.value);
-  };
-  const transcrInEdit = (e) => {
-    e.preventDefault();
-    setEditTranscr(e.target.value);
-  };
-  const translInEdit = (e) => {
-    e.preventDefault();
-    setEditTransl(e.target.value);
-  };
-  const topicInEdit = (e) => {
-    e.preventDefault();
-    setEditTopic(e.target.value);
+    const value = e.target.value;
+    setEditField({
+      ...editField,
+      [e.target.name]: value,
+    });
   };
 
   return (
@@ -66,31 +78,44 @@ function TableRow(props) {
         <form className={styles.tr}>
           <div className={styles.td}>{id}</div>
           <div className={narrowCol}>
-            <TableInput value={editWord} type="text" onChange={wordInEdit} />
+            <TableInput
+              value={editField.word}
+              type="text"
+              name="word"
+              onChange={handleChange}
+            />
           </div>
           <div className={narrowCol}>
             <TableInput
-              value={editTranscr}
+              value={editField.transcription}
               type="text"
-              onChange={transcrInEdit}
+              name="transcription"
+              onChange={handleChange}
             />
           </div>
           <div className={wideCol}>
             <TableInput
-              value={editTransl}
+              value={editField.translation}
               type="text"
-              onChange={translInEdit}
+              name="translation"
+              onChange={handleChange}
             />
           </div>
           <div className={narrowCol}>
-            <TableInput value={editTopic} type="text" onChange={topicInEdit} />
+            <TableInput
+              value={editField.topic}
+              type="text"
+              name="topic"
+              onChange={handleChange}
+            />
           </div>
           <div className={buttonCell}>
             <Button
-              type="button"
+              type="submit"
               icon={saveIcon}
               alt="Save icon"
               theme={greenBtn}
+              isDisabled={btnStatus}
             />
             <Button
               type="button"
