@@ -23,14 +23,14 @@ export const words = [
   {
     id: "4",
     english: "sunscreen",
-    transcription: "[ˈsʌn.skriːn]",
+    transcription: "[ˈsʌn.skri:n]",
     russian: "солнцезащитный крем",
     topic: "отпуск (vacation)",
   },
   {
     id: "5",
     english: "starch",
-    transcription: "[stɑːtʃ]",
+    transcription: "[stɑ:tʃ]",
     russian: "крахмал",
     topic: "еда (food)",
   },

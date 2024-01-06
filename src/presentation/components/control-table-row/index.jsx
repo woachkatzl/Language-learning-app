@@ -73,6 +73,30 @@ function TableRow(props) {
     });
   };
 
+  //Метод для сохранения слов - проверка ошибок и вывод в консоль
+  const saveClick = (e) => {
+    e.preventDefault();
+
+    const wordCheck = /^[A-Za-z\s]+$/; //слово на английском, должно быть на латинице, без символов и чисел
+    const transcrCheck = /^[A-Za-z\s\[\]ˈʔɚɹ˞ɔʌɪʊæɛəœɵʃθðŋ˞fɑ.:+]+$/i; //транскрипция, символы транскрипции, квадратные скобки
+    const translatCheck = /^[А-Яа-я\s,]+$/; //перевод, должен быть записан кириллицей, может включать запятые
+    const topicCheck = /^[A-Za-zА-Яа-я\s()]+$/; //включает латиницу и кириллицу, скобки
+
+    if (
+      wordCheck.test(editField.word) &&
+      transcrCheck.test(editField.transcription) &&
+      translatCheck.test(editField.translation) &&
+      topicCheck.test(editField.topic)
+    ) {
+      console.log(
+        `слово: ${editField.word} \nтранскрипция: ${editField.transcription} \nперевод: ${editField.translation} \nтема: ${editField.topic}`,
+      );
+    } else
+      alert(
+        "Одно из полей ввода содержит ошибку. Пожалуйста, исправьте её и сохраните изменения",
+      );
+  };
+
   return (
     <>
       {inEdit ? (
@@ -121,6 +145,7 @@ function TableRow(props) {
               alt="Save icon"
               theme={greenBtn}
               isDisabled={btnStatus}
+              onClick={saveClick}
             />
             <Button
               type="button"
