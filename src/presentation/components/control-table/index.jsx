@@ -1,13 +1,14 @@
 import React from "react";
 
 //components
-import { words } from "../../../domain/info/wordsList";
 import { TableRow } from "../control-table-row";
 
 //styles
 import styles from "./table.module.scss";
 
-function ControlTable() {
+function ControlTable(props) {
+  const { words } = props;
+
   return (
     <div className={styles.table}>
       <div className={styles.thead}>
