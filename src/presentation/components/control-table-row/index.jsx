@@ -105,7 +105,6 @@ function TableRow(props) {
           <div className={narrowCol}>
             <TableInput
               value={editField.word}
-              type="text"
               name="word"
               onChange={handleChange}
               isEmpty={editField.word === ""} //Если поле ввода пустое, к нему применятся специальные стили
@@ -114,7 +113,6 @@ function TableRow(props) {
           <div className={narrowCol}>
             <TableInput
               value={editField.transcription}
-              type="text"
               name="transcription"
               onChange={handleChange}
               isEmpty={editField.transcription === ""}
@@ -123,7 +121,6 @@ function TableRow(props) {
           <div className={wideCol}>
             <TableInput
               value={editField.translation}
-              type="text"
               name="translation"
               onChange={handleChange}
               isEmpty={editField.translation === ""}
@@ -132,7 +129,6 @@ function TableRow(props) {
           <div className={narrowCol}>
             <TableInput
               value={editField.topic}
-              type="text"
               name="topic"
               onChange={handleChange}
               isEmpty={editField.topic === ""}
