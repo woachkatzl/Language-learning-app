@@ -107,7 +107,6 @@ function TableRow(props) {
               value={editField.word}
               name="word"
               onChange={handleChange}
-              isEmpty={editField.word === ""} //Если поле ввода пустое, к нему применятся специальные стили
             />
           </div>
           <div className={narrowCol}>
@@ -115,7 +114,6 @@ function TableRow(props) {
               value={editField.transcription}
               name="transcription"
               onChange={handleChange}
-              isEmpty={editField.transcription === ""}
             />
           </div>
           <div className={wideCol}>
@@ -123,7 +121,6 @@ function TableRow(props) {
               value={editField.translation}
               name="translation"
               onChange={handleChange}
-              isEmpty={editField.translation === ""}
             />
           </div>
           <div className={narrowCol}>
@@ -131,7 +128,6 @@ function TableRow(props) {
               value={editField.topic}
               name="topic"
               onChange={handleChange}
-              isEmpty={editField.topic === ""}
             />
           </div>
           <div className={buttonCell}>
