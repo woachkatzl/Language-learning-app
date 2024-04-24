@@ -5,8 +5,9 @@ import styles from "./tableInput.module.scss";
 import classNames from "classnames";
 
 const TableInput = memo(function TableInput(props) {
-  const { value, type, isEmpty, ...otherProps } = props;
+  const { value, type, ...otherProps } = props;
 
+  const isEmpty = value === ""; //Если поле ввода пустое, к нему применятся специальные стили
   const input = classNames(styles.formInput, {
     [styles.emptyInput]: isEmpty,
   });

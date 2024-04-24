@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 //styles
 import styles from "./styles/button.module.scss";
@@ -7,7 +7,7 @@ import textButton from "./styles/textButton.module.scss";
 import inactiveButton from "./styles/disabled.module.scss";
 import classNames from "classnames";
 
-function Button(props) {
+const Button = memo(function Button(props) {
   const { type, text, icon, alt, onClick, theme, isDisabled } = props;
 
   //Составные классы
@@ -23,6 +23,6 @@ function Button(props) {
       {text && <span>{text}</span>}
     </button>
   );
-}
+});
 
 export { Button };

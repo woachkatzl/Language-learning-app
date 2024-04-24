@@ -105,37 +105,29 @@ function TableRow(props) {
           <div className={narrowCol}>
             <TableInput
               value={editField.word}
-              type="text"
               name="word"
               onChange={handleChange}
-              isEmpty={editField.word === ""} //Если поле ввода пустое, к нему применятся специальные стили
             />
           </div>
           <div className={narrowCol}>
             <TableInput
               value={editField.transcription}
-              type="text"
               name="transcription"
               onChange={handleChange}
-              isEmpty={editField.transcription === ""}
             />
           </div>
           <div className={wideCol}>
             <TableInput
               value={editField.translation}
-              type="text"
               name="translation"
               onChange={handleChange}
-              isEmpty={editField.translation === ""}
             />
           </div>
           <div className={narrowCol}>
             <TableInput
               value={editField.topic}
-              type="text"
               name="topic"
               onChange={handleChange}
-              isEmpty={editField.topic === ""}
             />
           </div>
           <div className={buttonCell}>
