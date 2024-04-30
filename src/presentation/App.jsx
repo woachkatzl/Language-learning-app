@@ -8,17 +8,22 @@ import { GamePage } from "./pages/gamePage/GamePage";
 import { MissingPage } from "./pages/missingPage/MissingPage";
 import { Footer } from "./footer";
 
+//context
+import { WordsContextProvider } from "../infrastructure/ServerWords";
+
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/game" element={<GamePage />} />
-        <Route path="*" element={<MissingPage />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <WordsContextProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/game" element={<GamePage />} />
+          <Route path="*" element={<MissingPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </WordsContextProvider>
   );
 }
 

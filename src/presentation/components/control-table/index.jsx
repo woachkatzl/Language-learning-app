@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //components
 import { TableRow } from "../control-table-row";
@@ -6,8 +6,11 @@ import { TableRow } from "../control-table-row";
 //styles
 import styles from "./table.module.scss";
 
-function ControlTable(props) {
-  const { words } = props;
+//context
+import { WordsContext } from "../../../infrastructure/ServerWords";
+
+function ControlTable() {
+  const { words, getWords } = useContext(WordsContext);
 
   return (
     <div className={styles.table}>
@@ -29,7 +32,7 @@ function ControlTable(props) {
             word={word.english}
             transcription={word.transcription}
             translation={word.russian}
-            topic={word.topic}
+            topic={word.tags}
           />
         ))}
       </div>

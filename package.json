@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js --ext .jsx .",
     "fix": "eslint --ext .js --ext .jsx --fix ."
   },
+  "proxy": "http://itgirlschool.justmakeit.ru",
   "author": "y.v.polonskaya@gmail.com",
   "license": "ISC",
   "devDependencies": {
