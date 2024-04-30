@@ -5,12 +5,30 @@ const WordsContext = createContext({ words: [], getWords: () => {} });
 
 const WordsContextProvider = (props) => {
   const [words, setWords] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getWords = () => {
     fetch("https://itgirlschool.justmakeit.ru/api/words")
-      .then((response) => response.json())
-      .then((data) => setWords(data))
-      .catch((error) => console.log(error.message));
+      .then((response) => {
+        if (response.ok) return response.json();
+        else if (response.status === 404) throw new Error("404");
+        else throw new Error("Other error");
+      })
+      .then((data) => {
+        setWords(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        if (error.message === "404") {
+          setError("404 страница не найдена");
+          console.log("Error: 404 page not found");
+        } else {
+          setError("Ошибка: что-то пошло не так...");
+          console.log("An error occured: ", error.message);
+        }
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -18,7 +36,7 @@ const WordsContextProvider = (props) => {
   }, []);
 
   return (
-    <WordsContext.Provider value={{ words, getWords }}>
+    <WordsContext.Provider value={{ words, getWords, isLoading, error }}>
       {props.children}
     </WordsContext.Provider>
   );
