@@ -17,7 +17,7 @@ import leftArrow from "../../ui-kit/button/icons/left-arrow.svg";
 
 function CardSlider(props) {
   const { initWord, initWordCount, learnedWords } = props;
-  const { words } = useContext(WordsContext);
+  const { words, isLoading, error } = useContext(WordsContext);
 
   //Состояния
   //Изменение индекса карточки
@@ -72,6 +72,10 @@ function CardSlider(props) {
     }
   };
 
+  if (isLoading) return <div>Идёт загрузка</div>;
+
+  if (error) return <div>{error}</div>;
+
   return (
     <div className={styles.container}>
       <Button
@@ -101,7 +105,8 @@ function CardSlider(props) {
   );
 }
 
-CardSlider.defaultProps = {
+//No longer needed as the words are not passed throught the props but context
+/*CardSlider.defaultProps = {
   words: [
     {
       english: "Пример слова",
@@ -109,6 +114,6 @@ CardSlider.defaultProps = {
       russian: "перевод",
     },
   ],
-};
+};*/
 
 export { CardSlider };

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //components
 import { Button } from "../../ui-kit/button";
 import { TableInput } from "../../ui-kit/input-field";
+
+//Context
+import { WordsContext } from "../../../infrastructure/ServerWords";
 
 //styles
 import classNames from "classnames";
@@ -20,6 +23,7 @@ import cancelIcon from "../../ui-kit/button/icons/cancel.svg";
 
 function TableRow(props) {
   const { id, word, transcription, translation, topic, editMode } = props;
+  const { deleteWord } = useContext(WordsContext);
 
   //СОСТОЯНИЯ
   //Режим редактирования поля таблицы
@@ -42,8 +46,7 @@ function TableRow(props) {
     if (
       editField.word === "" ||
       editField.transcription === "" ||
-      editField.translation === "" ||
-      editField.topic === ""
+      editField.translation === ""
     )
       setBtnStatus(true);
     else setBtnStatus(false);
@@ -78,23 +81,37 @@ function TableRow(props) {
     e.preventDefault();
 
     const wordCheck = /^[A-Za-z\s]+$/; //слово на английском, должно быть на латинице, без символов и чисел
-    const transcrCheck = /^[A-Za-z\s\[\]ˈʔɚɹ˞ɔʌɪʊæɛəœɵʃθðŋ˞fɑ.:+]+$/i; //транскрипция, символы транскрипции, квадратные скобки
     const translatCheck = /^[А-Яа-я\s,]+$/; //перевод, должен быть записан кириллицей, может включать запятые
     const topicCheck = /^[A-Za-zА-Яа-я\s()]+$/; //включает латиницу и кириллицу, скобки
 
     if (
+      editField.topic &&
       wordCheck.test(editField.word) &&
-      transcrCheck.test(editField.transcription) &&
       translatCheck.test(editField.translation) &&
       topicCheck.test(editField.topic)
     ) {
       console.log(
         `слово: ${editField.word} \nтранскрипция: ${editField.transcription} \nперевод: ${editField.translation} \nтема: ${editField.topic}`,
       );
+    } else if (
+      !editField.topic &&
+      wordCheck.test(editField.word) &&
+      translatCheck.test(editField.translation)
+    ) {
+      console.log(
+        `слово: ${editField.word} \nтранскрипция: ${editField.transcription} \nперевод: ${editField.translation}`,
+      );
     } else
       alert(
         "Одно из полей ввода содержит ошибку. Пожалуйста, исправьте её и сохраните изменения",
       );
+  };
+
+  //Метод удаления слова
+  const deleteClick = (e) => {
+    e.preventDefault();
+
+    deleteWord(id);
   };
 
   return (
@@ -168,6 +185,7 @@ function TableRow(props) {
               icon={deleteIcon}
               alt="Delete icon"
               theme={redBtn}
+              onClick={deleteClick}
             />
           </div>
         </div>
