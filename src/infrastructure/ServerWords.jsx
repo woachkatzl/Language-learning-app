@@ -1,12 +1,18 @@
 import React, { createContext, useEffect, useState } from "react";
 
 //It's a good practice to provide initial value of the context object that matches the expected data structure
-const WordsContext = createContext({ words: [], getWords: () => {} });
+const WordsContext = createContext({
+  words: [],
+  getWords: () => {},
+  isLoading: true,
+  error: null,
+});
 
+//Creating a context component that would have all the necessary logic accessible throughout the app.
 const WordsContextProvider = (props) => {
   const [words, setWords] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); //Creating an error state, so that a type of error can be set and exported within the context.
 
   const getWords = () => {
     fetch("https://itgirlschool.justmakeit.ru/api/words")

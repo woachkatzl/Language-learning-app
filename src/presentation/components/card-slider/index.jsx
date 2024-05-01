@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 //Компоненты
 import { Card } from "../card";
 import { Button } from "../../ui-kit/button";
+
+//Context
+import { WordsContext } from "../../../infrastructure/ServerWords";
 
 //Стили
 import styles from "./cardSlider.module.scss";
@@ -13,7 +16,8 @@ import rightArrow from "../../ui-kit/button/icons/right-arrow.svg";
 import leftArrow from "../../ui-kit/button/icons/left-arrow.svg";
 
 function CardSlider(props) {
-  const { words, initWord, initWordCount, learnedWords } = props;
+  const { initWord, initWordCount, learnedWords } = props;
+  const { words } = useContext(WordsContext);
 
   //Состояния
   //Изменение индекса карточки
@@ -21,6 +25,7 @@ function CardSlider(props) {
 
   //Переворачивание карточки
   const [isFlipped, setIsFlipped] = useState(false);
+
   useEffect(() => {
     setIsFlipped(false); //сбрасывает переворот карточки при смене индекса
   }, [wordIndex]);
