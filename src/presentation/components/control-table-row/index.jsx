@@ -26,7 +26,7 @@ import cancelIcon from "../../ui-kit/button/icons/cancel.svg";
 
 function TableRow(props) {
   const { id, word, transcription, translation, topic, editMode } = props;
-  const { deleteWord } = useContext(WordsContext);
+  const { deleteWord, updateWord } = useContext(WordsContext);
 
   //СОСТОЯНИЯ
   //Режим редактирования поля таблицы
@@ -79,7 +79,7 @@ function TableRow(props) {
     });
   };
 
-  //Метод для сохранения слов - проверка ошибок и вывод в консоль
+  //Метод для сохранения редактированных слов - проверка ошибок и добавление на сервер
   const saveClick = (e) => {
     e.preventDefault();
 
@@ -90,15 +90,15 @@ function TableRow(props) {
     const isValidTopic = SpellCheck.topicCheck.test(editField.topic);
 
     if (isValidWord && isValidTranslate && isValidTopic) {
-      const details = [
-        `слово: ${editField.word}`,
-        `транскрипция: ${editField.transcription}`,
-        `перевод: ${editField.translation}`,
-      ];
+      updateWord(
+        id,
+        editField.word,
+        editField.transcription,
+        editField.translation,
+        editField.topic,
+      );
 
-      if (editField.topic) details.push(`тема: ${editField.topic}`);
-
-      console.log(details.join("\n"));
+      setEditMode(!inEdit);
     } else
       alert(
         "Одно из полей ввода содержит ошибку. Пожалуйста, исправьте её и сохраните изменения",

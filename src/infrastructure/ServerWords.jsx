@@ -7,6 +7,7 @@ const WordsContext = createContext({
   isLoading: true,
   error: null,
   deleteWord: () => {},
+  updateWord: () => {},
 });
 
 //Creating a context component that would have all the necessary logic accessible throughout the app.
@@ -65,13 +66,50 @@ const WordsContextProvider = (props) => {
       });
   };
 
+  //METHOD FOR UPDATING WORDS
+  const updateWord = (id, word, transcription, translation, tags) => {
+    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/update`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: id,
+        english: word,
+        trnscription: transcription,
+        russian: translation,
+        tags: tags,
+        tags_json: "",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) return response.json();
+        else if (response.status === 404) throw new Error("404");
+        else throw new Error("Error adding a word, status: " + response.status);
+      })
+      .then((data) => {
+        console.log("Addition successful: ", data);
+        alert("Слово успешно добавлено");
+        getWords();
+      })
+      .catch((error) => {
+        if (error.message === "404") {
+          alert("404 страница не найдена");
+          console.log("Error: 404 page not found");
+        } else {
+          alert("Ошибка, не удалось добавить слово");
+          console.log("An error occured: ", error.message);
+        }
+      });
+  };
+
   useEffect(() => {
     getWords();
   }, []);
 
   return (
     <WordsContext.Provider
-      value={{ words, getWords, isLoading, error, deleteWord }}
+      value={{ words, getWords, isLoading, error, deleteWord, updateWord }}
     >
       {props.children}
     </WordsContext.Provider>
