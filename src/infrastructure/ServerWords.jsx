@@ -15,7 +15,7 @@ const WordsContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); //Creating an error state, so that a type of error can be set and exported within the context.
 
-  //getting words list from the server API
+  //METHOD for getting words list from the server API
   const getWords = () => {
     fetch("https://itgirlschool.justmakeit.ru/api/words")
       .then((response) => {
@@ -39,7 +39,7 @@ const WordsContextProvider = (props) => {
       });
   };
 
-  //deleing words
+  //METHOD FOR DELETING WORDS
   const deleteWord = (id) => {
     fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
       method: "POST",

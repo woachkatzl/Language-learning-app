@@ -7,6 +7,9 @@ import { TableInput } from "../../ui-kit/input-field";
 //Context
 import { WordsContext } from "../../../infrastructure/ServerWords";
 
+//info
+import { SpellCheck } from "../../../domain/info/SpellCheck";
+
 //styles
 import classNames from "classnames";
 import styles from "./tableRow.module.scss";
@@ -80,27 +83,22 @@ function TableRow(props) {
   const saveClick = (e) => {
     e.preventDefault();
 
-    const wordCheck = /^[A-Za-z\s]+$/; //слово на английском, должно быть на латинице, без символов и чисел
-    const translatCheck = /^[А-Яа-я\s,]+$/; //перевод, должен быть записан кириллицей, может включать запятые
-    const topicCheck = /^[A-Za-zА-Яа-я\s()]+$/; //включает латиницу и кириллицу, скобки
+    const isValidWord = SpellCheck.wordCheck.test(editField.word);
+    const isValidTranslate = SpellCheck.translateCheck.test(
+      editField.translation,
+    );
+    const isValidTopic = SpellCheck.topicCheck.test(editField.topic);
 
-    if (
-      editField.topic &&
-      wordCheck.test(editField.word) &&
-      translatCheck.test(editField.translation) &&
-      topicCheck.test(editField.topic)
-    ) {
-      console.log(
-        `слово: ${editField.word} \nтранскрипция: ${editField.transcription} \nперевод: ${editField.translation} \nтема: ${editField.topic}`,
-      );
-    } else if (
-      !editField.topic &&
-      wordCheck.test(editField.word) &&
-      translatCheck.test(editField.translation)
-    ) {
-      console.log(
-        `слово: ${editField.word} \nтранскрипция: ${editField.transcription} \nперевод: ${editField.translation}`,
-      );
+    if (isValidWord && isValidTranslate && isValidTopic) {
+      const details = [
+        `слово: ${editField.word}`,
+        `транскрипция: ${editField.transcription}`,
+        `перевод: ${editField.translation}`,
+      ];
+
+      if (editField.topic) details.push(`тема: ${editField.topic}`);
+
+      console.log(details.join("\n"));
     } else
       alert(
         "Одно из полей ввода содержит ошибку. Пожалуйста, исправьте её и сохраните изменения",
