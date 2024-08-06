@@ -36,6 +36,7 @@ function TableRow(props) {
   const [btnStatus, setBtnStatus] = useState(false);
 
   //Состояние для строк таблицы с полями ввода в режиме редактирования
+  //Как это работает. В React элементы таблицы являются controlled components, т.е. их данные хранятся в состоянии компонента. Изначально мы задаём значения, которые отобразятся в каждом поле для редактирования, на основе полученных из пропсов. Слова справа - названия полей, указанные атрибутом name в условном рендеринге ниже.
   const [editField, setEditField] = useState({
     word: word,
     transcription: transcription,
@@ -68,14 +69,14 @@ function TableRow(props) {
     setEditMode(!inEdit);
   };
 
-  //Метод для редактирования полей ввода.
+  //Метод для редактирования полей ввода. В режиме редактирования при изменении в полях ввода активизируется эта функция.
   const handleChange = (e) => {
     e.preventDefault();
 
-    const value = e.target.value;
+    const value = e.target.value; //Getting the value in the target filed after it changed (typing)
     setEditField({
-      ...editField,
-      [e.target.name]: value,
+      ...editField, //This syntax copies all properties from the current editField object.
+      [e.target.name]: value, //Поскольку это controlled component и отображаемые значения привязаны к состоянию компонента, мы обновляем состояние и задаём полученное выше значение в том поле, атрибут name которого соответствует тому же атрибуту изменённого (target) поля. Теперь изменеия тразятся на экране
     });
   };
 

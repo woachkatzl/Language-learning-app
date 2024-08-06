@@ -73,7 +73,7 @@ const WordsContextProvider = (props) => {
       body: JSON.stringify({
         id: id,
         english: word,
-        trnscription: transcription,
+        transcription: transcription,
         russian: translation,
         tags: tags,
         tags_json: "",
@@ -89,8 +89,8 @@ const WordsContextProvider = (props) => {
       })
       .then((data) => {
         console.log("Addition successful: ", data);
-        alert("Слово успешно добавлено");
         getWords();
+        alert("Слово успешно обновлено");
       })
       .catch((error) => {
         if (error.message === "404") {
