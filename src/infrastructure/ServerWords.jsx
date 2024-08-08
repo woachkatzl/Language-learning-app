@@ -8,6 +8,7 @@ const WordsContext = createContext({
   error: null,
   deleteWord: () => {},
   updateWord: () => {},
+  addWord: () => {},
 });
 
 //Creating a context component that would have all the necessary logic accessible throughout the app.
@@ -18,7 +19,7 @@ const WordsContextProvider = (props) => {
 
   //METHOD for getting words list from the server API
   const getWords = () => {
-    fetch("https://itgirlschool.justmakeit.ru/api/words")
+    fetch("http://itgirlschool.justmakeit.ru/api/words")
       .then((response) => {
         if (response.ok) return response.json();
         else if (response.status === 404) throw new Error("404");
@@ -103,13 +104,57 @@ const WordsContextProvider = (props) => {
       });
   };
 
+  //METHOD FOR ADDING NEW WORDS
+  const addWord = (word, transcription, translation, tags) => {
+    fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+      method: "POST",
+      body: JSON.stringify({
+        english: word,
+        transcription: transcription,
+        russian: translation,
+        tags: tags,
+        tags_json: "",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) return response.json();
+        else if (response.status === 404) throw new Error("404");
+        else throw new Error("Error adding a word, status: " + response.status);
+      })
+      .then((data) => {
+        console.log("Addition successful: ", data);
+        getWords();
+        alert("Слово успешно обновлено");
+      })
+      .catch((error) => {
+        if (error.message === "404") {
+          alert("404 страница не найдена");
+          console.log("Error: 404 page not found");
+        } else {
+          alert("Ошибка, не удалось добавить слово");
+          console.log("An error occured: ", error.message);
+        }
+      });
+  };
+
   useEffect(() => {
     getWords();
   }, []);
 
   return (
     <WordsContext.Provider
-      value={{ words, getWords, isLoading, error, deleteWord, updateWord }}
+      value={{
+        words,
+        getWords,
+        isLoading,
+        error,
+        deleteWord,
+        updateWord,
+        addWord,
+      }}
     >
       {props.children}
     </WordsContext.Provider>

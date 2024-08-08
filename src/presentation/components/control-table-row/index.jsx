@@ -25,8 +25,17 @@ import saveIcon from "../../ui-kit/button/icons/save.svg";
 import cancelIcon from "../../ui-kit/button/icons/cancel.svg";
 
 function TableRow(props) {
-  const { id, word, transcription, translation, topic, editMode } = props;
-  const { deleteWord, updateWord } = useContext(WordsContext);
+  const {
+    id,
+    word,
+    transcription,
+    translation,
+    topic,
+    editMode,
+    addingMode,
+    setAddingMode,
+  } = props;
+  const { deleteWord, updateWord, addWord } = useContext(WordsContext);
 
   //СОСТОЯНИЯ
   //Режим редактирования поля таблицы
@@ -38,10 +47,10 @@ function TableRow(props) {
   //Состояние для строк таблицы с полями ввода в режиме редактирования
   //Как это работает. В React элементы таблицы являются controlled components, т.е. их данные хранятся в состоянии компонента. Изначально мы задаём значения, которые отобразятся в каждом поле для редактирования, на основе полученных из пропсов. Слова справа - названия полей, указанные атрибутом name в условном рендеринге ниже.
   const [editField, setEditField] = useState({
-    word: word,
-    transcription: transcription,
-    translation: translation,
-    topic: topic,
+    word: word || "",
+    transcription: transcription || "",
+    translation: translation || "",
+    topic: topic || "",
   });
 
   //ЦИКЛЫ КОМПОНЕНТА
@@ -62,11 +71,11 @@ function TableRow(props) {
   const wideCol = classNames(styles.td, styles.wide);
 
   //МЕТОДЫ
-  //Метод для переключения в режим редактирования
+  //Метод для переключения из режима редактирования
   const editClick = (e) => {
     e.preventDefault();
 
-    setEditMode(!inEdit);
+    !addingMode ? setEditMode(!inEdit) : setAddingMode(!addingMode);
   };
 
   //Метод для редактирования полей ввода. В режиме редактирования при изменении в полях ввода активизируется эта функция.
@@ -76,7 +85,7 @@ function TableRow(props) {
     const value = e.target.value; //Getting the value in the target filed after it changed (typing)
     setEditField({
       ...editField, //This syntax copies all properties from the current editField object.
-      [e.target.name]: value, //Поскольку это controlled component и отображаемые значения привязаны к состоянию компонента, мы обновляем состояние и задаём полученное выше значение в том поле, атрибут name которого соответствует тому же атрибуту изменённого (target) поля. Теперь изменеия тразятся на экране
+      [e.target.name]: value, //Поскольку это controlled component и отображаемые значения привязаны к состоянию компонента, мы обновляем состояние и задаём полученное выше значение в том поле, атрибут name которого соответствует тому же атрибуту изменённого (target) поля. Теперь изменеия oтразятся на экране
     });
   };
 
@@ -91,15 +100,24 @@ function TableRow(props) {
     const isValidTopic = SpellCheck.topicCheck.test(editField.topic);
 
     if (isValidWord && isValidTranslate && isValidTopic) {
-      updateWord(
-        id,
-        editField.word,
-        editField.transcription,
-        editField.translation,
-        editField.topic,
-      );
+      if (!addingMode) {
+        updateWord(
+          id,
+          editField.word,
+          editField.transcription,
+          editField.translation,
+          editField.topic,
+        );
 
-      setEditMode(!inEdit);
+        setEditMode(!inEdit);
+      } else {
+        addWord(
+          editField.word,
+          editField.transcription,
+          editField.translation,
+          editField.topic,
+        );
+      }
     } else
       alert(
         "Одно из полей ввода содержит ошибку. Пожалуйста, исправьте её и сохраните изменения",

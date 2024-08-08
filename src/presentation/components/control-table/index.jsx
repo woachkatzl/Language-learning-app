@@ -9,12 +9,9 @@ import styles from "./table.module.scss";
 //context
 import { WordsContext } from "../../../infrastructure/ServerWords";
 
-function ControlTable() {
-  const { words, isLoading, error } = useContext(WordsContext);
-
-  if (isLoading) return <div>Идёт загрузка</div>;
-
-  if (error) return <div>{error}</div>;
+function ControlTable(props) {
+  const { isAdding, setIsAdding } = props;
+  const { words } = useContext(WordsContext);
 
   return (
     <div className={styles.table}>
@@ -39,6 +36,13 @@ function ControlTable() {
             topic={word.tags}
           />
         ))}
+        {isAdding && (
+          <TableRow
+            editMode={true}
+            addingMode={isAdding}
+            setAddingMode={setIsAdding}
+          />
+        )}
       </div>
       <div className={styles.tfoot}></div>
     </div>
