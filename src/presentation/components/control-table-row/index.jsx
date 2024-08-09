@@ -71,13 +71,6 @@ function TableRow(props) {
   const wideCol = classNames(styles.td, styles.wide);
 
   //МЕТОДЫ
-  //Метод для переключения из режима редактирования
-  const editClick = (e) => {
-    e.preventDefault();
-
-    !addingMode ? setEditMode(!inEdit) : setAddingMode(!addingMode);
-  };
-
   //Метод для редактирования полей ввода. В режиме редактирования при изменении в полях ввода активизируется эта функция.
   const handleChange = (e) => {
     e.preventDefault();
@@ -87,6 +80,13 @@ function TableRow(props) {
       ...editField, //This syntax copies all properties from the current editField object.
       [e.target.name]: value, //Поскольку это controlled component и отображаемые значения привязаны к состоянию компонента, мы обновляем состояние и задаём полученное выше значение в том поле, атрибут name которого соответствует тому же атрибуту изменённого (target) поля. Теперь изменеия oтразятся на экране
     });
+  };
+
+  //Метод для переключения из режима редактирования
+  const editClick = (e) => {
+    e.preventDefault();
+
+    !addingMode ? setEditMode(!inEdit) : setAddingMode(!addingMode);
   };
 
   //Метод для сохранения редактированных слов - проверка ошибок и добавление на сервер
@@ -117,6 +117,8 @@ function TableRow(props) {
           editField.translation,
           editField.topic,
         );
+
+        setAddingMode(!addingMode);
       }
     } else
       alert(

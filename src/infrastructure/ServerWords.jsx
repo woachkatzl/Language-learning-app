@@ -6,6 +6,7 @@ const WordsContext = createContext({
   getWords: () => {},
   isLoading: true,
   error: null,
+  loadingError: null,
   deleteWord: () => {},
   updateWord: () => {},
   addWord: () => {},
@@ -16,6 +17,7 @@ const WordsContextProvider = (props) => {
   const [words, setWords] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); //Creating an error state, so that a type of error can be set and exported within the context.
+  const [loadingError, setLoadingError] = useState(null);
 
   //METHOD for getting words list from the server API
   const getWords = () => {
@@ -31,10 +33,10 @@ const WordsContextProvider = (props) => {
       })
       .catch((error) => {
         if (error.message === "404") {
-          setError("404 страница не найдена");
+          setLoadingError("404 страница не найдена");
           console.log("Error: 404 page not found");
         } else {
-          setError("Ошибка: что-то пошло не так...");
+          setLoadingError("Ошибка: что-то пошло не так...");
           console.log("An error occured: ", error.message);
         }
         setIsLoading(false);
@@ -106,7 +108,7 @@ const WordsContextProvider = (props) => {
 
   //METHOD FOR ADDING NEW WORDS
   const addWord = (word, transcription, translation, tags) => {
-    fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+    fetch("/api/words/add", {
       method: "POST",
       body: JSON.stringify({
         english: word,
@@ -151,6 +153,7 @@ const WordsContextProvider = (props) => {
         getWords,
         isLoading,
         error,
+        loadingError,
         deleteWord,
         updateWord,
         addWord,

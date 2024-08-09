@@ -64,5 +64,12 @@ module.exports = {
         hot: true,
         compress: true,
         port: 3000, 
+        proxy: {
+            '/api': {
+                target: 'http://itgirlschool.justmakeit.ru',
+                secure: false,
+                changeOrigin: true,
+            },
+        },
     },
 };

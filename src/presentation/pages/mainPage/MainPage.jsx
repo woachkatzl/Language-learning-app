@@ -13,20 +13,17 @@ import { WordsContext } from "../../../infrastructure/ServerWords";
 
 function MainPage() {
   const [isAdding, setIsAdding] = useState(false);
-  const { isLoading, error, addWord } = useContext(WordsContext);
+  const { isLoading, loadingError } = useContext(WordsContext);
 
   const addClick = (e) => {
     e.preventDefault();
 
     setIsAdding(true);
-
-    //test for adding word method
-    //addWord("test", "[test]", "тест", "test");
   };
 
   if (isLoading) return <div>Идёт загрузка</div>;
 
-  if (error) return <div>{error}</div>;
+  if (loadingError) return <div>{loadingError}</div>;
 
   return (
     <div className={styles.container}>
