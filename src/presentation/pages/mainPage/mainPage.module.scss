@@ -1,7 +1,191 @@
+@use "../../../assets/styles/variables.scss" as v;
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 30px;
+}
+
+.noContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  font-size: 2rem;
+}
+
+//Loading animation
+
+.loadContainer {
+  display: block;
+  margin: auto;
+  width: 49px;
+}
+
+.loadingState {
+  width: 44px;
+  height: 44px;
+  text-align: left;
+  animation: loadingState-ani1 2.3s ease-in-out infinite;
+  -o-animation: loadingState-ani1 2.3s ease-in-out infinite;
+  -ms-animation: loadingState-ani1 2.3s ease-in-out infinite;
+  -webkit-animation: loadingState-ani1 2.3s ease-in-out infinite;
+  -moz-animation: loadingState-ani1 2.3s ease-in-out infinite;
+}
+.loadingState i,
+.loadingState i:before {
+  content: "";
+  width: 44px;
+  height: 44px;
+  position: absolute;
+}
+.loadingState i {
+  border-radius: 50%;
+  overflow: hidden;
+}
+.loadingState i:nth-child(1) {
+  background: v.$red;
+  transform: translate(0, -24px);
+  -o-transform: translate(0, -24px);
+  -ms-transform: translate(0, -24px);
+  -webkit-transform: translate(0, -24px);
+  -moz-transform: translate(0, -24px);
+}
+.loadingState i:nth-child(1):before {
+  background: v.$blue;
+  bottom: 0;
+  animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -o-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -ms-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -webkit-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -moz-animation: loadingState-ani2 2.3s ease-in-out infinite;
+}
+.loadingState i:nth-child(2) {
+  background: v.$blue;
+  transform: translate(0, 24px);
+  -o-transform: translate(0, 24px);
+  -ms-transform: translate(0, 24px);
+  -webkit-transform: translate(0, 24px);
+  -moz-transform: translate(0, 24px);
+}
+.loadingState i:nth-child(2):before {
+  animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -o-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -ms-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -webkit-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  -moz-animation: loadingState-ani2 2.3s ease-in-out infinite;
+  background: v.$red;
+}
+
+@keyframes loadingState-ani1 {
+  40%,
+  50% {
+    transform: rotate(180deg);
+  }
+  90%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes loadingState-ani1 {
+  40%,
+  50% {
+    -o-transform: rotate(180deg);
+  }
+  90%,
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes loadingState-ani1 {
+  40%,
+  50% {
+    -ms-transform: rotate(180deg);
+  }
+  90%,
+  100% {
+    -ms-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loadingState-ani1 {
+  40%,
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  90%,
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes loadingState-ani1 {
+  40%,
+  50% {
+    -moz-transform: rotate(180deg);
+  }
+  90%,
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingState-ani2 {
+  40%,
+  100% {
+    height: 100%;
+  }
+  50%,
+  90% {
+    height: 0;
+  }
+}
+
+@-o-keyframes loadingState-ani2 {
+  40%,
+  100% {
+    height: 100%;
+  }
+  50%,
+  90% {
+    height: 0;
+  }
+}
+
+@-ms-keyframes loadingState-ani2 {
+  40%,
+  100% {
+    height: 100%;
+  }
+  50%,
+  90% {
+    height: 0;
+  }
+}
+
+@-webkit-keyframes loadingState-ani2 {
+  40%,
+  100% {
+    height: 100%;
+  }
+  50%,
+  90% {
+    height: 0;
+  }
+}
+
+@-moz-keyframes loadingState-ani2 {
+  40%,
+  100% {
+    height: 100%;
+  }
+  50%,
+  90% {
+    height: 0;
+  }
 }

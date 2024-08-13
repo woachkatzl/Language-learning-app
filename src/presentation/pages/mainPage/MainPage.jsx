@@ -21,9 +21,24 @@ function MainPage() {
     setIsAdding(true);
   };
 
-  if (isLoading) return <div>Идёт загрузка</div>;
+  if (isLoading)
+    return (
+      <div className={styles.noContent}>
+        <div className={styles.loadContainer}>
+          <div className={styles.loadingState}>
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+      </div>
+    );
 
-  if (loadingError) return <div>{loadingError}</div>;
+  if (loadingError)
+    return (
+      <div className={styles.noContent}>
+        <p>{loadingError}</p>
+      </div>
+    );
 
   return (
     <div className={styles.container}>
